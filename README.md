@@ -194,36 +194,45 @@ FIFA-WorldCup-AI-Predictor/
 
 # 📊 Data Sources
 
-The datasets are **not included** in this repository to reduce repository size.
+> **Note:** To keep the repository lightweight, datasets are **not included** in this repository.
+> Download the datasets from the sources below and place them inside the `data/raw/` directory.
 
-Recommended datasets:
-
-### 🌍 International Football Results
-
-- Kaggle - International Football Results
-
-### 📈 FIFA World Rankings
-
-- FIFA Official Rankings
-- Kaggle FIFA Rankings Dataset
-
-### ⭐ World Football Elo Ratings
-
-- World Football Elo Ratings
-
-### 💰 Squad Metadata
-
-- Transfermarkt
-
-Place all downloaded datasets inside:
-
-```text
-data/raw/
-```
-
-The preprocessing pipeline automatically converts them into ML-ready datasets.
+| Dataset | Source | Project Filename |
+|---------|--------|------------------|
+| 🌍 International Football Results | https://www.kaggle.com/datasets/martj42/international-football-results-from-1872-to-2017 | `data/raw/international_matches.csv` |
+| 📈 FIFA Men's World Rankings | https://www.kaggle.com/datasets/cashnarry/fifa-world-rankings-19922021 | `data/raw/fifa_rankings.csv` |
+| ⭐ World Football Elo Ratings | https://www.eloratings.net/ | `data/raw/elo_ratings.csv` |
+| 💰 Team Metadata (Squad Value, Age, Players) | https://www.transfermarkt.com/ | `data/raw/team_metadata.csv` |
 
 ---
+
+## 📂 Expected Directory Structure
+
+```text
+data/
+├── raw/
+│   ├── international_matches.csv
+│   ├── fifa_rankings.csv
+│   ├── elo_ratings.csv
+│   └── team_metadata.csv
+│
+└── processed/
+```
+
+Once the datasets are placed inside the `data/raw/` directory, simply run:
+
+```bash
+python scripts/train_model.py
+```
+
+The training pipeline will automatically:
+
+- 📥 Load all datasets
+- 🧹 Clean and validate the data
+- ⚙️ Perform feature engineering
+- 🤖 Train the XGBoost model
+- 💾 Save the trained model inside the `models/` directory
+
 
 # 🚀 Getting Started
 
