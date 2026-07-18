@@ -1,58 +1,350 @@
 # ⚽ FIFA World Cup 2026 AI Predictor
 
-An AI-powered simulation and prediction engine for the FIFA World Cup 2026. This project uses machine learning (XGBoost) and Monte Carlo simulations to model match outcomes, predict scores, and run tournament brackets from the group stage to the final.
+> **An end-to-end Machine Learning system that predicts FIFA World Cup match outcomes and simulates the entire tournament using XGBoost and Monte Carlo Simulation.**
+
+![Python](https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python)
+![XGBoost](https://img.shields.io/badge/XGBoost-ML-green?style=for-the-badge)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?style=for-the-badge&logo=scikitlearn)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red?style=for-the-badge&logo=streamlit)
+![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)
 
 ---
 
-## 🚀 How to Run
+## 🌍 Overview
 
-### 1. Install Dependencies
-Ensure you have Python installed, then install the required libraries:
+The **FIFA World Cup 2026 AI Predictor** is an end-to-end Machine Learning project that predicts football match outcomes and simulates the complete FIFA World Cup tournament.
+
+Using **historical international football matches**, **FIFA rankings**, **Elo ratings**, **team statistics**, and **feature engineering**, the model estimates the probability of each team winning a match. These predictions are then used in a **Monte Carlo simulation** to simulate thousands of World Cup tournaments and estimate each country's probability of becoming the champion.
+
+This project demonstrates the complete ML lifecycle:
+
+- 📥 Data Collection
+- 🧹 Data Cleaning
+- 📊 Exploratory Data Analysis
+- ⚙️ Feature Engineering
+- 🤖 Model Training
+- 📈 Model Evaluation
+- 🎲 Tournament Simulation
+- 🌐 Interactive Dashboard Deployment
+
+---
+
+# 🏗️ ML Pipeline
+
+```text
+                    Historical Match Data
+                              │
+                              ▼
+                   Data Cleaning & Processing
+                              │
+                              ▼
+                     Feature Engineering
+                              │
+                              ▼
+                    XGBoost Match Predictor
+                              │
+                              ▼
+                Win / Draw / Loss Probabilities
+                              │
+                              ▼
+               Monte Carlo Tournament Simulation
+                              │
+                              ▼
+        FIFA World Cup 2026 Champion Probabilities
+```
+
+---
+
+# ✨ Features
+
+## 🤖 Machine Learning
+
+- XGBoost Match Prediction Model
+- Probability-based Match Prediction
+- Automated Feature Engineering
+- Feature Importance Analysis
+- Model Evaluation Metrics
+
+---
+
+## 📊 Football Analytics
+
+The model considers multiple feature groups:
+
+### ⭐ Team Strength
+
+- FIFA Ranking
+- FIFA Ranking Points
+- Elo Rating
+- Squad Market Value
+
+### 📈 Recent Form
+
+- Last 5 Match Results
+- Last 10 Match Results
+- Goals Scored
+- Goals Conceded
+- Goal Difference
+- Win Percentage
+- Clean Sheets
+
+### ⚽ Attacking Performance
+
+- Average Goals
+- Scoring Consistency
+- Big Match Performance
+
+### 🛡 Defensive Performance
+
+- Average Goals Conceded
+- Defensive Consistency
+- Clean Sheet Percentage
+
+### 👥 Squad Information
+
+- Average Squad Age
+- Players from Top European Leagues
+- Key Player Availability
+
+### 🌍 Tournament Context
+
+- Neutral Venue
+- Tournament Importance
+- Historical World Cup Performance
+- Rest Days
+
+---
+
+## 🎲 Tournament Simulation
+
+- Monte Carlo Tournament Simulation
+- Configurable Simulation Runs
+- Automatic Knockout Bracket Generation
+- Championship Probability Estimation
+
+---
+
+## 📊 Interactive Dashboard
+
+Built using **Streamlit**
+
+Dashboard Modules include:
+
+- 🏠 Home
+- ⚽ Match Predictor
+- 🏆 Tournament Simulator
+- 📊 Team Analysis
+- 🔬 Model Insights
+
+---
+
+# 📂 Project Structure
+
+```text
+FIFA-WorldCup-AI-Predictor/
+│
+├── notebooks/
+│   ├── 01_data_collection.ipynb
+│   ├── 02_eda.ipynb
+│   └── 03_feature_engineering.ipynb
+│
+├── src/
+│   ├── __init__.py
+│   ├── data_loader.py
+│   ├── features.py
+│   ├── model.py
+│   ├── simulator.py
+│   └── predict.py
+│
+├── dashboard/
+│   ├── app.py
+│   ├── pages/
+│   └── components/
+│
+├── scripts/
+│   ├── download_data.py
+│   └── train_model.py
+│
+├── data/
+│   ├── raw/
+│   └── processed/
+│
+├── models/
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
+
+# 🛠️ Tech Stack
+
+| Category | Technology |
+|-----------|------------|
+| Programming Language | Python |
+| Machine Learning | XGBoost, Scikit-learn |
+| Data Analysis | Pandas, NumPy |
+| Visualization | Plotly, Matplotlib |
+| Dashboard | Streamlit |
+| Model Serialization | Joblib |
+| Development | Jupyter Notebook, VS Code |
+| Version Control | Git & GitHub |
+
+---
+
+# 📊 Data Sources
+
+The datasets are **not included** in this repository to reduce repository size.
+
+Recommended datasets:
+
+### 🌍 International Football Results
+
+- Kaggle - International Football Results
+
+### 📈 FIFA World Rankings
+
+- FIFA Official Rankings
+- Kaggle FIFA Rankings Dataset
+
+### ⭐ World Football Elo Ratings
+
+- World Football Elo Ratings
+
+### 💰 Squad Metadata
+
+- Transfermarkt
+
+Place all downloaded datasets inside:
+
+```text
+data/raw/
+```
+
+The preprocessing pipeline automatically converts them into ML-ready datasets.
+
+---
+
+# 🚀 Getting Started
+
+## 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/FIFA-WorldCup-AI-Predictor.git
+
+cd FIFA-WorldCup-AI-Predictor
+```
+
+---
+
+## 2️⃣ Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Generate Data & Train the Model
-The repository does not contain raw or processed data files (they are excluded via `.gitignore`). To bootstrap the project, run the training script. If no local datasets exist, it will automatically generate a realistic simulation dataset to get you started immediately:
+---
+
+## 3️⃣ Train the Model
+
 ```bash
 python scripts/train_model.py
 ```
 
-### 3. Launch the Dashboard
-Run the Streamlit interactive dashboard to run predictions, tournament brackets, and view model feature importance:
+If no datasets are found, the project automatically generates a realistic synthetic dataset so the complete ML pipeline can still be demonstrated.
+
+---
+
+## 4️⃣ Launch the Dashboard
+
 ```bash
 python -m streamlit run dashboard/app.py
 ```
 
 ---
 
-## 📊 Data Sourcing
+# 📈 Example Prediction
 
-For real-world prediction accuracy, you can download real-world datasets and place them under `data/raw/` with schemas matching those defined in `src/data_loader.py`. 
+```text
+Match
 
-Here are the recommended sources to download the actual datasets:
+🇧🇷 Brazil vs 🇪🇸 Spain
 
-1. **International Match History:**
-   * **Source:** [Kaggle - International Football Results from 1872 to Present](https://www.kaggle.com/datasets/martj42/international-football-results-from-1872-to-2017)
-   * **Filename in project:** `data/raw/international_matches.csv`
+Predicted Probabilities
 
-2. **FIFA Men's World Rankings:**
-   * **Source:** [Kaggle - FIFA Men's World Rankings](https://www.kaggle.com/datasets/cashnarry/fifa-world-rankings-19922021) or official rankings from FIFA's website.
-   * **Filename in project:** `data/raw/fifa_rankings.csv`
+Brazil Win : 48.6%
 
-3. **Elo Ratings:**
-   * **Source:** National team ratings from [World Football Elo Ratings (eloratings.net)](https://www.eloratings.net/).
-   * **Filename in project:** `data/raw/elo_ratings.csv`
+Draw : 24.8%
 
-4. **Squad Attributes & Market Values:**
-   * **Source:** Squad values, average age, and league player counts from [Transfermarkt](https://www.transfermarkt.com/).
-   * **Filename in project:** `data/raw/team_metadata.csv`
+Spain Win : 26.6%
+```
 
 ---
 
-## 🛠️ Project Structure
+# 🏆 Tournament Simulation Output
 
-* `dashboard/` — Streamlit pages and visual components
-* `scripts/` — Scripts for generating data (`generate_data.py`) and model training (`train_model.py`)
-* `src/` — Core modules for feature engineering, data loading, predictions, and Monte Carlo tournament simulation
-* `models/` — Model metadata and feature importances
+```text
+Simulation Runs : 10,000
+
+Champion Probabilities
+
+🇪🇸 Spain ............. 18.3%
+
+🇦🇷 Argentina ......... 16.7%
+
+🇫🇷 France ............ 15.8%
+
+🇧🇷 Brazil ............ 12.9%
+
+🏴 England ............ 9.8%
+
+🇩🇪 Germany ........... 8.6%
+```
+
+---
+
+# 📌 Future Improvements
+
+- ✅ Real-time Injury Tracking
+- ✅ Live FIFA Rankings
+- ✅ Real xG & xGA Integration
+- ✅ Player-Level Prediction Models
+- ✅ Ensemble Learning
+- ✅ REST API
+- ✅ Docker Support
+- ✅ CI/CD Pipeline
+- ✅ MLflow Experiment Tracking
+- ✅ Cloud Deployment (AWS / Azure / GCP)
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+If you'd like to improve this project:
+
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+# 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+# 👨‍💻 Author
+
+## Arman Khan
+
+**AI Engineer | Machine Learning Enthusiast | Automation Engineer**
+
+Building intelligent systems with Machine Learning, AI Agents, Data Engineering, and Automation.
+
+---
+
+⭐ **If you found this project useful, consider giving it a star!**
